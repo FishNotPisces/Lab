@@ -3,36 +3,23 @@ import java.util.Scanner;
 public class BinForm {
     public static void main (String args[]) {
         Scanner input = new Scanner(System.in);
-        byte _num;
-        
-        try {
-            _num = input.nextByte();
-        }
-        catch (Exception e) {
-            _num = 0;
-            System.out.println("Error");
-        }
-        
-        int num = _num;
-        
-        String sign = "0";
-        if (num < 0) {
-            sign = "1";
-            num = 128 + num + 128;
-        }
-        
+        int num;
+
+        do {
+            System.out.println("Inserisci un numero intero esprimibile in 8 bit");
+            num = input.nextShort();
+        }while (num > 127 || num < -128);
+
+        if (num < 0) {num += 256;}
+
         String numBin = "";
-        
-        while (num > 0) {
-            if (numBin.length() > 2 && numBin.length()%4 == 0) {
-                numBin = "_" + numBin;
-            }
+
+        for (int i = 0; i < 8; i++) {
+            if (i == 4) {numBin = "_" + numBin;}
             numBin = Integer.toString(num%2) + numBin;
             num /= 2;
         }
-        
-        numBin = sign + " / " + numBin;
 
-        System.out.printf("0b%s%n", numBin); 
+        System.out.printf("0b%s%n", numBin);
     }
 }
