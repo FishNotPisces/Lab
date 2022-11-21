@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class Divisori {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int num = in.nextInt();
+        int num;
+        try(Scanner in = new Scanner(System.in)) {
+            num = in.nextInt();
+        }
 
         int factor = 2;
         while (num != 1) {

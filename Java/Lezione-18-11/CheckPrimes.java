@@ -10,11 +10,8 @@ public class CheckPrimes {
         boolean isPrime = true;
 
         int i = 2;
-        while ( i*i <= num) {
-            if (num % i == 0) {
-                isPrime = false;
-                break;
-            }
+        while (isPrime && i*i <= num) {
+            isPrime = num % i != 0;
             i++; // i = i + 1   oppure   i += 1
         }
 
