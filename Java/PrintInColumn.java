@@ -15,5 +15,6 @@ public class PrintInColumn {
             }
             wrd = wrd + words.charAt(i);
         }
+        input.close();
     }
 }

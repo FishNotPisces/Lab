@@ -15,6 +15,7 @@ public class Prova1 {
             System.out.println(line);
         }
         input.close();
+        getIn.close();
         reader.close();
     }
 }

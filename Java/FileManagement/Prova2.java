@@ -9,5 +9,6 @@ public class Prova2 {
         String line = in.nextLine();
         file.write(line);
         file.close();
+        in.close();
     }
 }

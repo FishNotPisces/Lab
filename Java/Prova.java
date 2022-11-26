@@ -11,5 +11,7 @@ public class Prova {
         name = input.nextLine();
         
         System.out.println("\n\nPiacere di conoscerti " + name);
+
+        input.close();
     }
 }

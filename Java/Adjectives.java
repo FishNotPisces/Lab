@@ -17,7 +17,7 @@ public class Adjectives {
     System.out.println(adj + suffix_dim + ending);
     System.out.println(adj + suffix_sup + ending);
     
-    
+    input.close();
     }
 
 }
