@@ -19,7 +19,7 @@ public class BinForm {
             numBin = Integer.toString(num%2) + numBin;
             num /= 2;
         }
-
+        input.close();
         System.out.printf("0b%s%n", numBin);
     }
 }
