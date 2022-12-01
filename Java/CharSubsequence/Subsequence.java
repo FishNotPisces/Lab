@@ -30,8 +30,6 @@ public class Subsequence {
                 break;
             }  
         }
-
-        
         return match;
     }
 }
