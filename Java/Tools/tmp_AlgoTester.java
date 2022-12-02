@@ -1,5 +1,5 @@
 package Tools;
-import Tools.ArrayAlgs;
+//import Tools.ArrayAlgs;
 
 public class tmp_AlgoTester {
     public static void main(String[] args) {
