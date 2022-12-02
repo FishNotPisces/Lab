@@ -24,7 +24,6 @@ public class DoubleArray {
             }
             len *= 2;
         }
-        
     }
 
     public int length() {
