@@ -1,4 +1,4 @@
-package Figure;
+package Figure.Cerchio;
 
 import java.util.Scanner;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package Figure;
+package Figure.Cerchio;
 
 public class Cerchio {
 

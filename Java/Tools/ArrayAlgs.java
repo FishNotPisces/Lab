@@ -15,23 +15,39 @@ public class ArrayAlgs {
             throw new ArithmeticException("Trying to copy values to a smaller array");
         }
         else {
-            for (int i=0; i<arrayFrom.length; i++) {
+            for (int i : arrayFrom) {
                 arrayTo[i] = arrayFrom[i];
             }
         }
     }
 
-    public static int[] linearFill(int len) {
-        int[] arr = new int[len];
-        for(int i=0; i<len; i++) {
+    public static int[] linearFill(int length) {
+        int[] arr = new int[length];
+        for(int i : arr) {
             arr[i] = i;
+        }
+        return arr;
+    }
+
+    public static int[] linearFill(int length, int step) {
+        int[] arr = new int[length];
+        for(int i : arr) {
+            arr[i] = i*step;
+        }
+        return arr;
+    }
+
+    public static int[] linearFill(int length, int from, int step) {
+        int[] arr = new int[length];
+        for(int i : arr) {
+            arr[i] = i*step + from;
         }
         return arr;
     }
 
     public static String printValues(int[] array) {
         String str = "";
-        for (int i=0; i<array.length; i++) {
+        for (int i : array) {
             str += array[i];
         }
         return str;

@@ -12,5 +12,11 @@ public class tmp_AlgoTester {
 
         System.out.println(ArrayAlgs.printValues(arr));
         System.out.println(ArrayAlgs.printValues(arr_1));
+        System.out.println(Meth.numberOfDigits(Long.parseLong(args[0])));
+        System.out.println(Meth.numberOfDigits(Long.MAX_VALUE));
+
+        // // ERROR BETWEEN 999999999999995999(18) AND 999999999999996000(18:output19)
+        
+        // ACTUAL ERROR BTWN 999999999999995968(18) AND 999999999999995969(18:output19)
     }
 }
