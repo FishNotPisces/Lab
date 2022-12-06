@@ -24,11 +24,11 @@ public class ArrayAlgs {
     public static int[] resize(int[] array, int newLength) {
         int[] _tmp = new int[array.length];
         copy(array, _tmp);
-        array = new int[newLength];
+        int[] newArray = new int[newLength];
         for (int i=0; i<newLength; i++) {
-            array[i] = _tmp[i];
+            newArray[i] = _tmp[i];
         }
-        return array;
+        return newArray;
     }
 
     public static int[] linearFill(int length) {
@@ -69,18 +69,18 @@ public class ArrayAlgs {
         int randomIndex;
         int[] rands = new int[length];
         for (int i = 0; i<length; i++) {
-            System.out.println(printValues(values));
-            randomIndex = (int)(Math.random()*values.length - 1);
-            System.out.println("rndInd:: " + randomIndex);
+                System.out.println(printValues(values));
+            randomIndex = (int)(Math.random()*(length-i));
+            //     System.out.println("rndInd:: " + randomIndex);
             rands[i] = values[randomIndex];
-            System.out.println("rnds_I:: " + rands[i]);
-            values[randomIndex] = values[values.length-1];
-            System.out.println("lastVal:: " + values[values.length-1]);
-            System.out.println("vals_rndInd:: " + values[randomIndex]);
-            int size = values.length - 1;
-            values = resize(values, size);
-            System.out.println("vals_rndInd:: " + values[randomIndex]);
-            System.out.println("------ round: " + i + " :------");
+            //     System.out.println("rnds_I:: " + rands[i]);
+            values[randomIndex]++;
+            values[randomIndex]--;
+            //     System.out.println("lastVal:: " + values[values.length-1]);
+                System.out.println("vals_rndInd:: " + values[randomIndex]);
+            values = resize(values, values.length - 1);
+                // System.out.println("vals_rndInd:: " + values[randomIndex]);
+                System.out.println("------ round: " + i + " :------");
         }
         return rands;
     }
