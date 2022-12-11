@@ -59,13 +59,28 @@ public class LongestSubstring {
      */
 
 
-    private int[] matrixDiagLengths (int n, int m) {
-        
+    private static int[] matrixDiagLengths (int n, int m) {
+        int[] arr = new int[n+m-1];
+        int min = Math.min(n, m);
+        int max = Math.max(n, m);
+        for (int i=0; i<min; i++) {
+            arr[i] = i;
+        }
+        for (int i = min; i<max+1; i++) {
+            arr[i] = min;
+        }
+        for (int i = n+m-2; i>=max+1; i--) {
+            arr[i] = n+m-1-i;
+        }
+
+        return arr;
     }
 
     public static String longestCommonSubStr (String a, String b) {
         int diagMax = b.length();
         int diagNum = a.length() + b.length() - 1;
+        boolean[][] checks = new boolean[a.length()][b.length()];
+        int[] diagLens = matrixDiagLengths(a.length(), b.length());
         if (a.length() < b.length()) {
             String _tmp = b;
             b = a;
@@ -73,7 +88,6 @@ public class LongestSubstring {
             diagMax = a.length();
         }
 
-        boolean[][] checks = new boolean[a.length()][b.length()];
         for (int i=0; i<b.length(); i++) {
             for (int j=0; j<a.length(); j++) {
                 if (a.charAt(j) == b.charAt(i)) {
@@ -85,12 +99,13 @@ public class LongestSubstring {
             }
         }
         
-        int[] dagLens = new int[diagNum];
-
         for (int i=0; i<diagNum; i++) {
-            for (int j=0; j<0/*actually things*/; j++) {
-                
+            for (int j=0; j<diagLens[i]; j++) {
+                System.out.print(checks[j][i] + " ");
             }
+            System.out.println("");
         }
+
+        return "fatto";
     }
 }
