@@ -1,4 +1,4 @@
-
+package LockClass;
 
 /**
    Classe di prova della classe Padlock

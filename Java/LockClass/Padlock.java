@@ -1,4 +1,4 @@
-
+package LockClass;
 
 public class Padlock {
     
