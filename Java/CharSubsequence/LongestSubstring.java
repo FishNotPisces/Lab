@@ -99,12 +99,19 @@ public class LongestSubstring {
             }
         }
         
-        for (int i=0; i<diagNum; i++) {
-            for (int j=0; j<diagLens[i]; j++) {
+        for (int i=0; i<b.length(); i++) {
+            for (int j=0; j<a.length(); j++) {
                 System.out.print(checks[j][i] + " ");
             }
             System.out.println("");
         }
+
+        // for (int i=0; i<diagNum; i++) {
+        //     for (int j=0; j<diagLens[i]; j++) {
+        //         System.out.print(checks[j][i] + " ");
+        //     }
+        //     System.out.println("");
+        // }
 
         return "fatto";
     }
