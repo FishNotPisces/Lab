@@ -11,82 +11,24 @@ public class LongestSubstring {
         in.close();
 
         subString = longestCommonSubStr(strA, strB);
-
         System.out.println(subString);
-
-    }
-
-    // public static String longestCommonSubStr (String a, String b) {
-    //     String sub = "";
-    //     String subHolder = "";
-    //     for (int i=0; i<b.length(); i++) {
-    //         if (sub.length() >= b.length()-i) break;
-    //         for (int j=i; j<b.length()-i; j++) {
-    //             if (!Substring.isSubstrOf(sub, a)) {
-    //                 if (sub.length()>subHolder.length()) subHolder = sub;
-    //                 sub = "";
-    //                 break;
-    //             }
-    //             sub += b.charAt(i+j);
-    //         }
-    //         if (sub.length()>subHolder.length()) subHolder = sub;
-    //     }
-        
-        
-    //     return subHolder;
-    // }
-
-    // public static String longestCommonSubStr (String a, String b) {
-
-    //     return "";
-    // }
-
-    // public static String getSub (String str, int len, int from) {
-    //     String sub = "";
-    //     for (int i=from; i<len; i++) {
-
-    //     }
-    //     return "";
-    // } 
-
-
-    /* 
-     * 
-     * 
-     * 
-     * 
-     *  
-     */
-
-
-    private static int[] matrixDiagLengths (int n, int m) {
-        int[] arr = new int[n+m-1];
-        int min = Math.min(n, m);
-        int max = Math.max(n, m);
-        for (int i=1; i<min; i++) {
-            arr[i-1] = i;
-        }
-        for (int i = min; i<max+1; i++) {
-            arr[i-1] = min;
-        }
-        for (int i = n+m-1; i>=max+1; i--) {
-            arr[i-1] = n+m-i;
-        }
-
-        return arr;
     }
 
     public static String longestCommonSubStr (String a, String b) {
-        int diagMax = b.length();
         int diagNum = a.length() + b.length() - 1;
         boolean[][] checks = new boolean[a.length()][b.length()];
+        String[] subs = new String[diagNum];
+        int grater = 0;
+
+        // Setup to make sure a is longer than b
         if (a.length() < b.length()) {
             String _tmp = b;
             b = a;
             a = _tmp;
-            diagMax = a.length();
         }
         
+        // Create a matrix of common chars between the two strings
+        // the longer consecutive set of "true" read diagonally will be the longer common substring
         for (int i=0; i<b.length(); i++) {
             for (int j=0; j<a.length(); j++) {
                 if (a.charAt(j) == b.charAt(i)) {
@@ -98,36 +40,22 @@ public class LongestSubstring {
             }
         }
         
-        int[] diagLens = matrixDiagLengths(a.length(), b.length());
-        // for (int i=0; i<diagNum; i++) {
-        //     System.out.println(diagLens[i]);
-        // }
-
-        // for (int i=0; i<b.length(); i++) {
-        //     for (int j=0; j<a.length(); j++) {
-        //         System.out.print(checks[j][i] + " ");
-        //     }
-        //     System.out.println("");
-        // }
-
-        // for (int i=0; i<diagNum; i++) {
-        //     for (int j=0; j<diagLens[i]; j++) {
-        //         //System.out.print(checks[j][i] + " ");
-        //         System.out.print(j+"-"+i+" ");
-        //     }
-        //     System.out.println("");
-        // }
-
+        // runs through the checks array and add the common substrings to an array of strings
+        // also keeps track of the index of the longest substring
         for( int k = 0 ; k <= a.length() + b.length() - 2; k++ ) {
+            subs[k] = "";
             for( int j = 0 ; j <= k ; j++ ) {
                 int i = k - j;
                 if( i < a.length() && j < b.length() ) {
-                    System.out.print( checks[i][j] + " " );
+                    if (checks[i][j]) {
+                        subs[k] += a.charAt(i);
+                    }
                 }
             }
-            System.out.println();
+            if (subs[k].length() > subs[grater].length()) {
+                grater = k;
+            }
         }
-
-        return "fatto";
+        return Tools.StringAlgs.reverse(subs[grater]);
     }
 }

@@ -63,6 +63,14 @@ public class ArrayAlgs {
         return str;
     }
 
+    public static String printValues(String[] array) {
+        String str = "";
+        for (int i = 0; i<array.length; i++) {
+            str += array[i] + " ";
+        }
+        return str;
+    }
+
     public static int[] unicRandomFill(int length) {
         int[] values = linearFill(length);
         int[] rands = new int[length];

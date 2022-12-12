@@ -127,4 +127,21 @@ public class Meth {
         }
         return digits;
     }
+
+    public static int[] matrixDiagonalsLengths (int n, int m) {
+        int[] arr = new int[n+m-1];
+        int min = Math.min(n, m);
+        int max = Math.max(n, m);
+        for (int i=1; i<min; i++) {
+            arr[i-1] = i;
+        }
+        for (int i = min; i<max+1; i++) {
+            arr[i-1] = min;
+        }
+        for (int i = n+m-1; i>=max+1; i--) {
+            arr[i-1] = n+m-i;
+        }
+
+        return arr;
+    }
 }
