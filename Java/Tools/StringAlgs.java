@@ -9,4 +9,12 @@ public class StringAlgs {
 
         return r;
     }
+
+    public static String substring (String s, int from, int length) {
+        String sub = "";
+        for (int i = 0; i<length; i++) {
+            sub += s.charAt(i+from);
+        }
+        return sub;
+    }
 }
