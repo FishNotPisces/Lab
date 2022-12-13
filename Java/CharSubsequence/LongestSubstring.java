@@ -10,8 +10,8 @@ public class LongestSubstring {
         String subString;
         in.close();
 
-        // subString = longestCommonSubStr(strA, strB);
-        // System.out.println(subString);
+        subString = longestCommonSubStr(strA, strB);
+        System.out.println(subString);
         System.out.println(lcsSlow(strA, strB));
     }
 
