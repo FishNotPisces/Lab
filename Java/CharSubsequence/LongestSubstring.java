@@ -12,21 +12,21 @@ public class LongestSubstring {
 
         subString = longestCommonSubStr(strA, strB);
         System.out.println(subString);
-        System.out.println(lcsSlow(strA, strB));
+        // System.out.println(lcsSlow(strA, strB));
     }
 
     public static String longestCommonSubStr (String a, String b) {
         int diagNum = a.length() + b.length() - 1;
-        boolean[][] checks = new boolean[a.length()][b.length()];
-        String[] subs = new String[diagNum];
-        int grater = 0;
-
-        // Setup to make sure a is longer than b
         if (a.length() < b.length()) {
             String _tmp = b;
             b = a;
             a = _tmp;
         }
+        boolean[][] checks = new boolean[a.length()][b.length()];
+        String[] subs = new String[diagNum];
+        int grater = 0;
+
+        // Setup to make sure a is longer than b
         
         // Create a matrix of common chars between the two strings
         // the longer consecutive set of "true" read diagonally will be the longer common substring
@@ -77,3 +77,6 @@ public class LongestSubstring {
         return substr;
     }
 }
+
+// bsrbsrbs
+// bsfbs

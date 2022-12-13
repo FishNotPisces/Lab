@@ -15,8 +15,8 @@ public class Substring {
 
     public static boolean isSubstrOf(String sub, String str) {
         boolean isSub = false;
-        if (sub.equals("")) isSub = true;
-        for(int i=0; i<str.length(); i++) {
+        if (sub.equals("")) return true;
+        for(int i=0; i<str.length()-sub.length(); i++) {
             isSub = true;
             for(int j=0; j<sub.length(); j++) {
                 if (str.charAt(i+j) != sub.charAt(j)) {
