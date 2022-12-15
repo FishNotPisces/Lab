@@ -63,6 +63,18 @@ public class ArrayAlgs {
         return str;
     }
 
+    public static String printValues(char[] array) {
+        String str = "";
+        for (int i = 0; i<array.length; i++) {
+            str += array[i] + " ";
+        }
+        return str;
+    }
+
+    public static String printValues(char[][] array) {
+        return array.toString();
+    }
+
     public static String printValues(String[] array) {
         String str = "";
         for (int i = 0; i<array.length; i++) {
@@ -93,5 +105,15 @@ public class ArrayAlgs {
             values[randomIndex] = values[length-i-1];
         }
         return rands;
+    }
+
+    public static char[][] charsRandomFill (int x, int y) {
+        char[][] mat = new char[x][y];
+        for (int i=0; i<y; i++) {
+            for (int j=0; j<x; j++) {
+                mat[j][i] = (char)(int)(Math.random()*(25)+97);
+            }
+        }
+        return mat;
     }
 }
