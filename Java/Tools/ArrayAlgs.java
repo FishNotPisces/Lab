@@ -71,6 +71,14 @@ public class ArrayAlgs {
         return str;
     }
 
+    public static String stringValues(char[] array) {
+        String str = "";
+        for (int i = 0; i<array.length; i++) {
+            str += array[i];
+        }
+        return str;
+    }
+
     public static String printValues(char[][] array) {
         return array.toString();
     }
@@ -105,6 +113,14 @@ public class ArrayAlgs {
             values[randomIndex] = values[length-i-1];
         }
         return rands;
+    }
+
+    public static char[] charsRandomFill (int length) {
+        char[] array = new char[length];
+        for (int i=0; i<length; i++) {
+            array[i] = (char)(int)(Math.random()*(25)+97); 
+        }
+        return array;
     }
 
     public static char[][] charsRandomFill (int x, int y) {

@@ -5,78 +5,65 @@ import java.util.Scanner;
 public class LongestSubstring {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String strA = in.nextLine();
-        String strB = in.nextLine();
-        String subString;
+        String a = in.nextLine();
+        String b = in.nextLine();
         in.close();
-
-        subString = longestCommonSubStr(strA, strB);
-        System.out.println(subString);
-        // System.out.println(lcsSlow(strA, strB));
-    }
-
-    public static String longestCommonSubStr (String a, String b) {
-        int diagNum = a.length() + b.length() - 1;
-        if (a.length() < b.length()) {
-            String _tmp = b;
-            b = a;
-            a = _tmp;
-        }
-        boolean[][] checks = new boolean[a.length()][b.length()];
-        String[] subs = new String[diagNum];
-        int grater = 0;
-
-        // Setup to make sure a is longer than b
         
-        // Create a matrix of common chars between the two strings
-        // the longer consecutive set of "true" read diagonally will be the longer common substring
-        for (int i=0; i<b.length(); i++) {
-            for (int j=0; j<a.length(); j++) {
-                if (a.charAt(j) == b.charAt(i)) {
-                    checks[j][b.length()-i-1] = true;
+        System.out.println(longestCommonSubstring(a, b));
+    }
+    
+    public static String longestCommonSubstring (String a, String b) {
+        final char spaceSymbol = '_';
+        String[] words = new String[b.length()];
+        checkChars(a, b, words, spaceSymbol);
+        traslateString(words, b.length());
+
+        String sub = "";
+        String tmp = "";
+        for (int i=0; i<a.length()+1; i++) {
+            for (int j=0; j<b.length(); j++) {
+                if (words[j].charAt(i) != spaceSymbol) {
+                    tmp += words[j].charAt(i);
                 }
                 else {
-                    checks[j][b.length()-i-1] = false;
-                }
-            }
-        }
-        
-        // runs through the checks array and add the common substrings to an array of strings
-        // also keeps track of the index of the longest substring
-        for( int k = 0 ; k <= a.length() + b.length() - 2; k++ ) {
-            subs[k] = "";
-            for( int j = 0 ; j <= k ; j++ ) {
-                int i = k - j;
-                if( i < a.length() && j < b.length() ) {
-                    if (checks[i][j]) {
-                        subs[k] += a.charAt(i);
+                    if (tmp.length() > sub.length()) {
+                        sub = "" + tmp;
                     }
+                    tmp = "";
                 }
             }
-            if (subs[k].length() > subs[grater].length()) {
-                grater = k;
+            if (tmp.length() > sub.length()) {
+                sub = "" + tmp;
             }
+            tmp = "";
         }
-        return Tools.StringAlgs.reverse(subs[grater]);
+        return sub;
     }
 
-
-    public static String lcsSlow (String a, String b) {
-        String substr = "";
-        boolean isSub = false;
-        for (int i = 0; i<a.length(); i++) {
-            for (int j = 0; j<=i; j++) {
-                substr = Tools.StringAlgs.substring(b, j, b.length()-i);
-                if (Substring.isSubstrOf(substr, a)) {
-                    isSub = true;
-                    break;
+    public static void checkChars (String a, String b, String[] words, char spaceSymbol) {
+        for (int i=0; i<b.length(); i++) {
+            words[i] = "";
+            for (int j=0; j<a.length(); j++) {
+                if (a.charAt(j) == b.charAt(i)) {
+                    words[i] += a.charAt(j);
+                }
+                else {
+                    words[i] += spaceSymbol;
                 }
             }
-            if (isSub) break;
+            words[i] += spaceSymbol;
         }
-        return substr;
+    }
+
+    public static void traslateString (String[] s, int length) {
+        for (int i=0; i<length; i++) {
+            String z = "";
+            z += s[i] + s[i];
+            s[i] = z.substring(i%s[i].length(), i%s[i].length()+s[i].length());
+        }
+        // -- debug --
+        // for (int i=0; i<length; i++) {
+        //     System.out.println(s[i]);
+        // }
     }
 }
-
-// bsrbsrbs
-// bsfbs
