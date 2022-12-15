@@ -13,10 +13,9 @@ public class LongestSubstring {
     }
     
     public static String longestCommonSubstring (String a, String b) {
-        final char spaceSymbol = '_';
+        final char spaceSymbol = ' ';
         String[] words = new String[b.length()];
         checkChars(a, b, words, spaceSymbol);
-        traslateString(words, b.length());
 
         String sub = "";
         String tmp = "";
@@ -52,18 +51,14 @@ public class LongestSubstring {
                 }
             }
             words[i] += spaceSymbol;
+            words[i] = traslateString(words[i], i);
         }
     }
 
-    public static void traslateString (String[] s, int length) {
-        for (int i=0; i<length; i++) {
-            String z = "";
-            z += s[i] + s[i];
-            s[i] = z.substring(i%s[i].length(), i%s[i].length()+s[i].length());
-        }
-        // -- debug --
-        // for (int i=0; i<length; i++) {
-        //     System.out.println(s[i]);
-        // }
+    public static String traslateString (String s, int amount) {
+        String z = "";
+        z += s + s;
+        s = z.substring(amount%s.length(), amount%s.length()+s.length());
+        return s;
     }
 }
