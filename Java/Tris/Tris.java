@@ -9,35 +9,44 @@ public class Tris {
 
     private static void gameLoop() {
         boolean endgame = false;
-            Board board = new Board();
-            Scanner in = new Scanner(System.in);
-            Tools.Windows.consoleClear();
-            board.printExample();
-            while (!endgame) {
-                byte pos;
-                board.printTurn();
-                do {
-                    try {
-                        pos = in.nextByte();
-                    }
-                    catch (Exception e) {
-                        pos = -1;
-                    }
-                }while(pos < 0 || pos > 8 || !board.isPosEmpty(pos));
-                Tools.Windows.consoleClear();
-                board.getNextPos(pos);
-                board.printBoard();
-                if (board.isLastTurn()) {
-                    endgame = true;
-                    System.out.println("It's a tie");
+        Board board = new Board();
+        Scanner in = new Scanner(System.in);
+        Tools.Windows.consoleClear();
+        board.printExample();
+        board.printTurn();
+        while (!endgame) {
+            byte pos;
+            do {
+                try {
+                    pos = in.nextByte();
                 }
-                if (board.doWeHaveWinner()) {
-                    endgame = true;
-                    board.printWinner();
-                } 
-                
+                catch (Exception e) {
+                    pos = -1;
+                    in.nextLine();   
+                }
+                Tools.Windows.consoleClear();
+                board.printBoard();
+                board.printTurn();
+                System.out.print("Try a valid position : ");
             }
-            in.close();
+            while (pos < 1 || pos > 9 || !board.isPosEmpty(pos));
+
+            Tools.Windows.consoleClear();
+            board.getNextPos(pos);
+            board.printBoard();
+            if (board.doWeHaveWinner()) {
+                endgame = true;
+                board.printWinner();
+                break;
+            } 
+            if (board.isLastTurn()) {
+                endgame = true;
+                System.out.println("It's a tie");
+                break;
+            }
+            board.printTurn();
+        }
+        in.close();
     }
 }
 
@@ -127,8 +136,7 @@ class Board {
                 return ' ';
         }
     }
-    
-    
+     
     private byte[] values;
     private boolean turn;
     private byte turnCount;
