@@ -4,32 +4,43 @@ import java.util.Scanner;
 
 public class Tris {
     public static void main(String[] args) {
-        boolean endgame = false;
-        Board board = new Board();
-        Scanner in = new Scanner(System.in);
+        gameLoop();
+    }
 
-        board.printBoard();
-        while (!endgame) {
-            byte pos;
-            board.printTurn();
-            do {
-                pos = in.nextByte();
-            }while(!board.isPosEmpty(pos));
-            board.getNextPos(pos);
-            board.printBoard();
-            if (board.isLastTurn()) {
-                endgame = true;
-                System.out.println("It's a tie");
+    private static void gameLoop() {
+        boolean endgame = false;
+            Board board = new Board();
+            Scanner in = new Scanner(System.in);
+            Tools.Windows.consoleClear();
+            board.printExample();
+            while (!endgame) {
+                byte pos;
+                board.printTurn();
+                do {
+                    try {
+                        pos = in.nextByte();
+                    }
+                    catch (Exception e) {
+                        pos = -1;
+                    }
+                }while(pos < 0 || pos > 8 || !board.isPosEmpty(pos));
+                Tools.Windows.consoleClear();
+                board.getNextPos(pos);
+                board.printBoard();
+                if (board.isLastTurn()) {
+                    endgame = true;
+                    System.out.println("It's a tie");
+                }
+                if (board.doWeHaveWinner()) {
+                    endgame = true;
+                    board.printWinner();
+                } 
+                
             }
-            if (board.doWeHaveWinner()) {
-                endgame = true;
-                board.printWinner();
-            } 
-            
-        }
-        in.close();
+            in.close();
     }
 }
+
 
 class Board {
     public Board() {
@@ -47,9 +58,19 @@ class Board {
         System.out.println();
         System.out.println();
     }
+
+    public void printExample() {
+        for (byte i=0; i<9; i+=3) {
+            System.out.println("\n" + (i+1) + " | " + (i+2) + " | " + (i+3));
+            if (i==0 || i==3) System.out.print("---------");
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
     
     public void printTurn() {
-        System.out.println("Turn: Player " + (turn ? 2 : 1));
+        System.out.println("Turn: Player " + (turn ? 2 : 1) + " (" + getSymbol((byte)(turn ? 2 : 1)) + ") ");
     }
 
     public void getNextPos(byte pos) {
@@ -88,16 +109,20 @@ class Board {
 
     public void printWinner() {
         if (doWeHaveWinner() || turnCount < 9) {
-            System.out.println("The winner is: " + (turn ? 1 : 2));
+            System.out.println("The winner is: " + (turn ? 1 : 2) + " (" + getSymbol((byte)(turn ? 1 : 2)) + ") ");
         }
     }
     
     private char getCharAtPos(byte pos) {
-        switch(this.values[pos]) {
+        return getSymbol(values[pos]);
+    }
+
+    private char getSymbol(byte p) {
+        switch(p) {
             case 1:
-                return 'x';
+                return 'X';
             case 2:
-                return 'o';
+                return 'O';
             default:
                 return ' ';
         }
