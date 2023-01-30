@@ -53,6 +53,13 @@ public class Text implements Container{
 
     }
 
+    public String removeLast() {
+        this.wordcount -= 1;
+        String lastWord = this.wordlist[wordcount];
+        this.wordlist[wordcount] = null;
+        return lastWord;
+    }
+
     public void sort()
     {
         //System.out.println(":: DEBUG1 :: " + ArrayAlgs.printValues(wordlist));
