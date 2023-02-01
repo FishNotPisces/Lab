@@ -24,9 +24,10 @@ public class SortedContainerTester {
             String matr = row.next();
             s = new Student(name, Integer.parseInt(matr));
             register.add(s);
+            row.close();
         }
 
-        //System.out.println(register.toString());
+        System.out.println(register.toString());
 
     }
 }

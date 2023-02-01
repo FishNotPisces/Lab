@@ -1,4 +1,4 @@
-package Containers.TextContainer;
+package TextContainer;
 
 public interface Container
 {

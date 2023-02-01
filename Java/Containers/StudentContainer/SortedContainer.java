@@ -33,7 +33,7 @@ public class SortedContainer implements Container {
     */
     public void add(Comparable newItem)
     {
-        if (this.collection.length <= this.itemCount+1) {
+        if (this.collection.length == this.itemCount) {
             this.collection = resize(this.collection, this.collection.length*2);
         }
         if(this.isEmpty()) {
@@ -78,6 +78,14 @@ public class SortedContainer implements Container {
 
         return max;
     } //completare
+
+    public String toString() {
+        String s = "";
+        for (int i=0; i<this.itemCount; i++) {
+            s += this.collection[i] + " ";
+        }
+        return s;
+    }
 
     private Comparable[] collection;
     private int itemCount;

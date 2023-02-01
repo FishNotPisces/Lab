@@ -1,4 +1,4 @@
-package Containers.TextContainer;
+package TextContainer;
 //import Tools.ArrayAlgs;
 
 public class Text implements Container{
