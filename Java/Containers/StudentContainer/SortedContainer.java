@@ -13,15 +13,15 @@ public class SortedContainer implements Container {
     } //completare
 
     public boolean isEmpty() {
-        for (Comparable item : collection) {
-            if (item != null) return false;
+        for (int i=0; i<collection.length; i++) {
+            if (this.collection[i] != null) return false;
         }
         return true;
     }
 
     public void makeEmpty() {
-        for (Comparable item : collection) {
-            item = null;
+        for (int i=0; i<collection.length; i++) {
+            this.collection[i] = null;
         }
     }
 
@@ -31,24 +31,43 @@ public class SortedContainer implements Container {
         viene ordinato. Andamento asintotico O(n) (prima dell'inserimento 
         l'array e' ordinato!)
     */
-    public void add(Comparable newItem)
-    {
+    // public void add(Comparable newItem)
+    // {
+    //     if (this.collection.length == this.itemCount) {
+    //         this.collection = resize(this.collection, this.collection.length*2);
+    //     }
+    //     if(this.isEmpty()) {
+    //         this.collection[0] = newItem;
+    //         itemCount++;
+    //         return;
+    //     }
+    //     for (int i=this.itemCount-1; i>= 0; i--) {
+    //         System.out.println("debug3:  " + this.collection[i]);
+    //         System.out.println("debug4:  " + (newItem.compareTo(this.collection[i]) < 0));
+    //         if (newItem.compareTo(this.collection[i]) < 0) {
+    //             this.collection[i+1] = this.collection[i];
+    //             this.collection[i] = null;
+    //         }
+    //         else {
+    //             this.collection[i] = newItem;
+    //         }
+    //     }
+    //     itemCount++;
+    //     return;
+    // }
+
+    public void add(Comparable newItem) {
         if (this.collection.length == this.itemCount) {
             this.collection = resize(this.collection, this.collection.length*2);
         }
-        if(this.isEmpty()) {
-            this.collection[0] = newItem;
-        }
-        for (int i=this.itemCount-1; i>= 0; i--) {
-            if (newItem.compareTo(this.collection[i]) > 0) {
+        this.collection[this.itemCount] = newItem;
+        for (int i=this.itemCount; i>= 0; i--) {
+            if (newItem.compareTo(this.collection[i]) < 0) {
                 this.collection[i+1] = this.collection[i];
-                this.collection[i] = null;
-            }
-            else {
                 this.collection[i] = newItem;
             }
         }
-        itemCount++;
+        this.itemCount++;
         return;
     }
 
@@ -72,8 +91,9 @@ public class SortedContainer implements Container {
             throw new NoSuchElementException();
         }
         else {
-            max = this.collection[this.itemCount];
             this.itemCount--;
+            max = this.collection[this.itemCount];
+            this.collection[this.itemCount] = null;
         }
 
         return max;
@@ -88,7 +108,7 @@ public class SortedContainer implements Container {
     }
 
     private Comparable[] collection;
-    private int itemCount;
+    public int itemCount;
 
 
 }
