@@ -1,4 +1,4 @@
-package Containers.StudentContainer;
+package StudentContainer;
 
 public class Student implements Comparable
 {

@@ -1,4 +1,4 @@
-package Containers.StudentContainer;
+package StudentContainer;
 
 import java.util.NoSuchElementException;
 
@@ -33,8 +33,11 @@ public class SortedContainer implements Container {
     */
     public void add(Comparable newItem)
     {
-        if (this.collection.length >= this.itemCount-1) {
+        if (this.collection.length <= this.itemCount+1) {
             this.collection = resize(this.collection, this.collection.length*2);
+        }
+        if(this.isEmpty()) {
+            this.collection[0] = newItem;
         }
         for (int i=this.itemCount-1; i>= 0; i--) {
             if (newItem.compareTo(this.collection[i]) > 0) {
@@ -46,6 +49,7 @@ public class SortedContainer implements Container {
             }
         }
         itemCount++;
+        return;
     }
 
     private Comparable[] resize(Comparable[] oldAr, int newLength)
@@ -68,7 +72,8 @@ public class SortedContainer implements Container {
             throw new NoSuchElementException();
         }
         else {
-            max = this.collection[itemCount];
+            max = this.collection[this.itemCount];
+            this.itemCount--;
         }
 
         return max;
