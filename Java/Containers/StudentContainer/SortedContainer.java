@@ -71,7 +71,7 @@ public class SortedContainer implements Container {
         return;
     }
 
-    private Comparable[] resize(Comparable[] oldAr, int newLength)
+    protected Comparable[] resize(Comparable[] oldAr, int newLength)
     {
         Comparable[] tmp = new Comparable[newLength];
         System.arraycopy(this.collection, 0, tmp, 0, this.collection.length);
@@ -108,7 +108,7 @@ public class SortedContainer implements Container {
     }
 
     private Comparable[] collection;
-    public int itemCount;
+    private int itemCount;
 
 
 }
