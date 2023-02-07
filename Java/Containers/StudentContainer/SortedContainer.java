@@ -107,8 +107,8 @@ public class SortedContainer implements Container {
         return s;
     }
 
-    private Comparable[] collection;
-    private int itemCount;
+    protected Comparable[] collection;
+    protected int itemCount;
 
 
 }

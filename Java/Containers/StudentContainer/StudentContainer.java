@@ -32,7 +32,7 @@ public class StudentContainer extends SortedContainer
             String name = row.next();
             String matr = row.next();
             Student s = new Student(name, Integer.parseInt(matr));
-            System.out.println("-debug- "+s);
+            //System.out.println("-debug- "+s);
             this.add(s);
             
             row.close();
@@ -50,17 +50,17 @@ public class StudentContainer extends SortedContainer
     */
     public void add(Comparable newItem)
     {
-        System.out.println("-debug1- "+ this.toString());
-        System.out.println("-debug2- "+ newItem);
+        //System.out.println("-debug1- "+ this.toString());
+        //System.out.println("-debug2- "+ newItem);
         if (!(newItem instanceof Student)) throw new IllegalArgumentException();
 
         if (this.collection.length == this.itemCount) {
             this.collection = resize(this.collection, this.collection.length*2);
         }
         this.collection[this.itemCount] = (Student)newItem;
-        System.out.println("-debug3- "+ this.toString());
+        //System.out.println("-debug3- "+ this.toString());
         for (int i=this.itemCount; i>= 0; i--) {
-            System.out.println("-debug4- "+ this.collection[i]);
+            //System.out.println("-debug4- "+ this.collection[i]);
             if (newItem.compareTo(this.collection[i]) < 0) {
                 this.collection[i+1] = this.collection[i];
                 this.collection[i] = (Student)newItem;
@@ -84,12 +84,12 @@ public class StudentContainer extends SortedContainer
 
     public String toString() {
         String s = "";
-        for (int i=0; i<this.itemCount; i++) {
+        for (int i=0; i<this.collection.length; i++) {
             s += this.collection[i] + " ";
         }
         return s;
     }
 
-    private Comparable[] collection;
-    private int itemCount;
+    //private Comparable[] collection;
+    //private int itemCount;
 }

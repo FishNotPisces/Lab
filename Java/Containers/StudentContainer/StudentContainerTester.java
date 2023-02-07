@@ -10,7 +10,7 @@ public class StudentContainerTester {
         PrintWriter fileOut = new PrintWriter(args[1]);
 
         while (!register.isEmpty()) {
-            fileOut.print((Student)register.removeMax());
+            fileOut.println((Student)register.removeMax());
         }
 
         fileOut.close();
