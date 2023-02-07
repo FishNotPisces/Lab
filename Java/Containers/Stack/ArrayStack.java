@@ -26,6 +26,7 @@ public class ArrayStack implements Pila {
         //if (this.itemcount >= this.list.length) this.list = resize(list, list.length*2);
         if (itemcount >= this.list.length) throw new FullStackException();
         this.list[this.itemcount] = obj;
+        this.itemcount++;
     }
 
     // private Object[] resize(Object[] oldAr, int newLength)
@@ -39,6 +40,7 @@ public class ArrayStack implements Pila {
         if (this.isEmpty()) throw new EmptyStackException();
         Object last = this.list[this.itemcount-1];
         this.list[this.itemcount-1] = null;
+        this.itemcount--;
         return last;
     }
 
